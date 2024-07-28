@@ -1,37 +1,36 @@
 ---
-
-const title = 'Have I Made a Million Yet?';
-const description = 'Input your net worth in your desired currency to determine when you\'ll become a millionaire in currencies from around the world!';
-
+const title = "Have I Made a Million Yet?";
+const description =
+  "Input your net worth in your desired currency to determine when you'll become a millionaire in currencies from around the world!";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 
 <style is:global>
-	*,
-	*::before,
-	*::after {
-		margin: 0;
-		padding: 0;
-		box-sizing: inherit;
-	}
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+  }
 
-	html {
-		font-size: 16px;
-		box-sizing: border-box;
-		scroll-behavior: smooth;
-	}
+  html {
+    font-size: 16px;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
 </style>
