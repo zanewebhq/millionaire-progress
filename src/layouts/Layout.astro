@@ -26,21 +26,6 @@ const description =
 </html>
 
 <style is:global>
-  *,
-  *::before,
-  *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
-  }
-
-  html {
-    font-family: 'Fira Sans', sans-serif;
-    font-size: 16px;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-  }
-
   :root {
     --hue-primary: 50;
     --hue-secondary: 25;
@@ -66,5 +51,22 @@ const description =
     --color-link-default: hsl(var(--hue-secondary), 100%, 20%);
     --color-link-hover: hsl(var(--hue-secondary), 100%, 70%);
     --color-link-active: hsl(var(--hue-secondary), 100%, 60%);
+  }
+
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+  }
+
+  html {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 16px;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    color: var(--color-primary-900);
+    background-color: var(--color-primary-500);
   }
 </style>

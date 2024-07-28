@@ -1,7 +1,85 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '@layouts/Layout.astro';
+import Button from '@components/Button.astro';
+import TextField from '@components/TextField.astro';
+import SelectField from '@components/SelectField.astro';
 ---
 
-<Layout />
+<Layout>
+  <main class="main">
+    <div class="main__content">
+      <h1 class="main__title">Have I Made a Million Yet?</h1>
+      <p class="main__description">
+        Input your net worth in your desired currency to determine whether
+        you're a millionaire in currencies from around the world!
+      </p>
 
-<style></style>
+      <form class="form">
+        <div class="fields">
+          <SelectField
+            id="currency"
+            name="currency"
+            label="What is your currency?"
+            options={[
+              { value: 'usd', name: 'United States Dollar (USD)' },
+              { value: 'eur', name: 'Euro (EUR)' },
+              { value: 'gbp', name: 'Great Britain Pound (GBP)' },
+            ]}
+            required
+          />
+
+          <TextField
+            id="net-worth"
+            name="net-worth"
+            type="number"
+            label="What is your net worth?"
+            placeholder="1000"
+            required
+          />
+        </div>
+
+        <Button>Calculate</Button>
+      </form>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 7rem);
+  }
+
+  .main__content {
+    width: 100%;
+    max-width: 50rem;
+    padding: 0 1rem;
+  }
+
+  .main__title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .main__description {
+    font-size: 1.25rem;
+    line-height: 130%;
+    margin-bottom: 3rem;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .fields {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+</style>
