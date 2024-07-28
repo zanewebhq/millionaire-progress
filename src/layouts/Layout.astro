@@ -1,5 +1,5 @@
 ---
-const title = "Have I Made a Million Yet?";
+const title = 'Have I Made a Million Yet?';
 const description =
   "Input your net worth in your desired currency to determine when you'll become a millionaire in currencies from around the world!";
 ---
@@ -32,5 +32,32 @@ const description =
     font-size: 16px;
     box-sizing: border-box;
     scroll-behavior: smooth;
+  }
+
+  :root {
+    --hue-primary: 50;
+    --hue-secondary: 25;
+    --sat: 100%;
+
+    --color-white: hsl(0, 0%, 100%);
+    --color-black: hsl(0, 0%, 0%);
+
+    --color-primary-100: hsl(var(--hue-primary), var(--sat), 90%);
+    --color-primary-200: hsl(var(--hue-primary), var(--sat), 80%);
+    --color-primary-300: hsl(var(--hue-primary), var(--sat), 70%);
+    --color-primary-400: hsl(var(--hue-primary), var(--sat), 60%);
+    --color-primary-500: hsl(var(--hue-primary), var(--sat), 50%);
+    --color-primary-600: hsl(var(--hue-primary), var(--sat), 40%);
+    --color-primary-700: hsl(var(--hue-primary), var(--sat), 30%);
+    --color-primary-800: hsl(var(--hue-primary), var(--sat), 20%);
+    --color-primary-900: hsl(var(--hue-primary), var(--sat), 10%);
+
+    --color-button-default: hsl(var(--hue-secondary), 100%, 70%);
+    --color-button-hover: hsl(var(--hue-secondary), 60%, 55%);
+    --color-button-active: hsl(var(--hue-secondary), 60%, 45%);
+
+    --color-link-default: hsl(var(--hue-secondary), 100%, 20%);
+    --color-link-hover: hsl(var(--hue-secondary), 100%, 70%);
+    --color-link-active: hsl(var(--hue-secondary), 100%, 60%);
   }
 </style>
