@@ -1,4 +1,9 @@
 ---
+import '@fontsource/fira-sans/400.css';
+import '@fontsource/fira-sans/700.css';
+import '@fontsource/fira-sans/800.css';
+import Header from '@components/Header.astro';
+
 const title = 'Have I Made a Million Yet?';
 const description =
   "Input your net worth in your desired currency to determine when you'll become a millionaire in currencies from around the world!";
@@ -15,6 +20,7 @@ const description =
     <title>{title}</title>
   </head>
   <body>
+    <Header />
     <slot />
   </body>
 </html>
@@ -29,6 +35,7 @@ const description =
   }
 
   html {
+    font-family: 'Fira Sans', sans-serif;
     font-size: 16px;
     box-sizing: border-box;
     scroll-behavior: smooth;
