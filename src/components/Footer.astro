@@ -18,8 +18,7 @@ import Link from '@components/Link.astro';
   .footer {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
     width: 100%;
     padding: 2rem 1rem;
     background-color: var(--color-primary-600);
@@ -27,6 +26,12 @@ import Link from '@components/Link.astro';
 
   .footer__paragraph {
     font-size: 1rem;
-    line-height: 100%;
+    line-height: 125%;
+  }
+
+  @media (min-width: 50rem) {
+    .footer {
+      align-items: center;
+    }
   }
 </style>

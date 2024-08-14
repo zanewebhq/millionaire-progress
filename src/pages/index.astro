@@ -11,7 +11,7 @@ import SelectField from '@components/SelectField.astro';
       <h1 class="main__title">Have I Made a Million Yet?</h1>
       <p class="main__description">
         Input your net worth in your desired currency to determine whether
-        you're a millionaire in currencies from around the world!
+        you've made a million in currencies from around the world!
       </p>
 
       <form class="form">
@@ -56,11 +56,11 @@ import SelectField from '@components/SelectField.astro';
   .main__content {
     width: 100%;
     max-width: 50rem;
-    padding: 0 1rem;
+    padding: 4rem 1rem;
   }
 
   .main__title {
-    font-size: 4rem;
+    font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
   }
@@ -68,18 +68,32 @@ import SelectField from '@components/SelectField.astro';
   .main__description {
     font-size: 1.25rem;
     line-height: 130%;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   .form {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
   }
 
   .fields {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+  }
+
+  @media (min-width: 50rem) {
+    .main__title {
+      font-size: 4rem;
+    }
+
+    .main__description {
+      margin-bottom: 3rem;
+    }
+
+    .form {
+      gap: 3rem;
+    }
   }
 </style>
