@@ -1,8 +1,10 @@
 ---
 import '@fontsource/fira-sans/400.css';
+import '@fontsource/fira-sans/500.css';
 import '@fontsource/fira-sans/700.css';
 import '@fontsource/fira-sans/800.css';
 import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
 
 const title = 'Have I Made a Million Yet?';
 const description =
@@ -22,6 +24,7 @@ const description =
   <body>
     <Header />
     <slot />
+    <Footer />
   </body>
 </html>
 
@@ -45,8 +48,8 @@ const description =
     --color-primary-900: hsl(var(--hue-primary), var(--sat), 10%);
 
     --color-button-default: hsl(var(--hue-secondary), 100%, 70%);
-    --color-button-hover: hsl(var(--hue-secondary), 60%, 55%);
-    --color-button-active: hsl(var(--hue-secondary), 60%, 45%);
+    --color-button-hover: hsl(var(--hue-secondary), 80%, 60%);
+    --color-button-active: hsl(var(--hue-secondary), 60%, 50%);
 
     --color-link-default: hsl(var(--hue-secondary), 100%, 20%);
     --color-link-hover: hsl(var(--hue-secondary), 100%, 70%);

@@ -1,0 +1,38 @@
+---
+interface Props {
+  href: string;
+}
+
+const props = Astro.props;
+---
+
+<a class="link" target="blank" rel="noopener noreferrer" {...props}><slot /></a>
+
+<style>
+  .link {
+    font-weight: 500;
+    border-bottom: 1px solid;
+    text-decoration: none;
+    transition-property: color, border-color, background, box-shadow,
+      border-radius;
+    transition-duration: 200ms;
+    box-shadow: 0 0 0 0.2rem transparent;
+    color: var(--color-link-default);
+    border-color: var(--color-link-default);
+  }
+
+  .link:hover,
+  .link:focus {
+    outline: none;
+    background-color: var(--color-link-hover);
+    box-shadow: 0 0 0 0.2rem var(--color-link-hover);
+    border-color: var(--color-link-hover);
+    border-radius: 2px;
+  }
+
+  .link:active {
+    background-color: var(--color-link-active);
+    box-shadow: 0 0 0 0.2rem var(--color-link-active);
+    border-color: var(--color-link-active);
+  }
+</style>
