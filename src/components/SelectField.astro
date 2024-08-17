@@ -3,7 +3,7 @@ interface Props {
   id: string;
   name: string;
   label: string;
-  options: { value: string; name: string }[];
+  options: { value: string; label: string }[];
   required?: boolean;
 }
 
@@ -15,7 +15,7 @@ const { label, id, options, ...rest } = Astro.props;
   <select class="field__select" id={id} {...rest}>
     {
       options.map((option) => (
-        <option value={option.value}>{option.name}</option>
+        <option value={option.value}>{option.label}</option>
       ))
     }
   </select>
@@ -23,9 +23,21 @@ const { label, id, options, ...rest } = Astro.props;
 
 <style>
   .field {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+  }
+
+  .field::after {
+    content: '';
+    position: absolute;
+    top: 3.75rem;
+    right: 1rem;
+    pointer-events: none;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+    border-top: 0.5rem solid black;
   }
 
   .field__label {
@@ -34,6 +46,7 @@ const { label, id, options, ...rest } = Astro.props;
   }
 
   .field__select {
+    appearance: none;
     height: 3.5rem;
     padding: 1rem;
     font-size: 1.25rem;

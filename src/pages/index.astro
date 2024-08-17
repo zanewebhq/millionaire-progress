@@ -1,9 +1,33 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import Button from '@components/Button.astro';
-import TextField from '@components/TextField.astro';
+import CurrencyField from '@components/CurrencyField.astro';
 import SelectField from '@components/SelectField.astro';
+import currencies from '@constants/currencies';
 ---
+
+<script>
+  import currencies from '@constants/currencies';
+
+  const currencyElement = document.getElementById(
+    'currency',
+  ) as HTMLSelectElement;
+  const currencySymbolElement = document.getElementById(
+    'net-worth-prepend',
+  ) as HTMLDivElement;
+
+  const handleCurrencyChange = () => {
+    const currencySymbol = currencies.find(
+      (currency) => currency.value === currencyElement.value,
+    )?.symbol;
+
+    if (currencySymbol) {
+      currencySymbolElement.textContent = currencySymbol;
+    }
+  };
+
+  currencyElement?.addEventListener('change', handleCurrencyChange);
+</script>
 
 <Layout>
   <main class="main">
@@ -14,21 +38,17 @@ import SelectField from '@components/SelectField.astro';
         you've made a million in currencies from around the world!
       </p>
 
-      <form class="form">
+      <form id="form" class="form" action="results">
         <div class="fields">
           <SelectField
             id="currency"
             name="currency"
             label="What is your currency?"
-            options={[
-              { value: 'usd', name: 'United States Dollar (USD)' },
-              { value: 'eur', name: 'Euro (EUR)' },
-              { value: 'gbp', name: 'Great Britain Pound (GBP)' },
-            ]}
+            options={currencies}
             required
           />
 
-          <TextField
+          <CurrencyField
             id="net-worth"
             name="net-worth"
             type="number"
@@ -89,7 +109,7 @@ import SelectField from '@components/SelectField.astro';
     }
 
     .main__description {
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
     }
 
     .form {

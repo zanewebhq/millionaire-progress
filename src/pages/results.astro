@@ -1,0 +1,9 @@
+---
+export const prerender = false;
+
+const currency = Astro.url.searchParams.get('currency') || '';
+const netWorth = Astro.url.searchParams.get('net-worth') || '';
+---
+
+<div>{currency}</div>
+<div>{netWorth}</div>
