@@ -12,6 +12,9 @@ interface Props {
 const { row, currency } = Astro.props;
 
 const formattedAmount = formatCurrency(row.amount, row.code);
+
+if(formattedAmount === null) return '';
+
 const difference = formatCurrency(Math.abs(row.difference), currency);
 const millionAmountToUSD = formatCurrency(row.millionAmountToUSD, currency);
 ---

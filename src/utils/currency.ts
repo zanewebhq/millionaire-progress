@@ -1,4 +1,6 @@
 const formatCurrency = (amount: number, currency: string) => {
+  if (['MATIC', 'USDC', 'USDT', 'OP', 'AVAX'].includes(currency)) return null;
+
   const { format } = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currencyDisplay: 'code',
@@ -6,6 +8,7 @@ const formatCurrency = (amount: number, currency: string) => {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
+
   return format(amount).replace(/^(-)?([A-Z]{3})\s*(.+)$/, '$1$3 $2');
 };
 
