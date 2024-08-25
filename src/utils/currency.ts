@@ -1,6 +1,4 @@
 const formatCurrency = (amount: number, currency: string) => {
-  if (['MATIC', 'USDC', 'USDT', 'OP', 'AVAX'].includes(currency)) return null;
-
   const { format } = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currencyDisplay: 'code',

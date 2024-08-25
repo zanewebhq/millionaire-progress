@@ -47,7 +47,7 @@ const numberOfCurrencies =
           required
         />
 
-        <Button>Calculate</Button>
+        <div class="button-wrapper"><Button class="">Calculate</Button></div>
       </form>
 
       <div class="results">
@@ -122,10 +122,15 @@ const numberOfCurrencies =
   .form {
     display: flex;
     align-items: flex-end;
+    flex-direction: column;
     gap: 2rem;
     width: 100%;
     padding-bottom: 2.5rem;
     border-bottom: 1px solid var(--color-primary-600);
+  }
+
+  .button-wrapper {
+    width: 100%;
   }
 
   .results {
@@ -141,9 +146,8 @@ const numberOfCurrencies =
   }
 
   .results__header {
-    display: flex;
+    display: none;
     gap: 2rem;
-    border-bottom: 1px solid var(--color-primary-700);
   }
 
   .results__header > div {
@@ -155,6 +159,7 @@ const numberOfCurrencies =
   .results__column--name {
     width: 30rem;
   }
+
   .results__column--amount {
     width: 18rem;
   }
@@ -172,5 +177,21 @@ const numberOfCurrencies =
   .results__row > div {
     font-size: 1.25rem;
     padding: 0.75rem 0;
+  }
+
+  @media (min-width: 90rem) {
+    .results__header {
+      display: flex;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .form {
+      flex-direction: row;
+    }
+
+    .button-wrapper {
+      max-width: 16rem;
+    }
   }
 </style>

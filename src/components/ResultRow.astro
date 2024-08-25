@@ -11,12 +11,15 @@ interface Props {
 
 const { row, currency } = Astro.props;
 
+if (['MATIC', 'USDC', 'USDT', 'OP', 'AVAX'].includes(row.code)) return '';
+
+
 const formattedAmount = formatCurrency(row.amount, row.code);
-
-if(formattedAmount === null) return '';
-
 const difference = formatCurrency(Math.abs(row.difference), currency);
-const millionAmountToUSD = formatCurrency(row.millionAmountToUSD, currency);
+const millionAmount = formatCurrency(row.millionAmount, currency);
+const one = formatCurrency(1, currency)
+const renderedMillionAmount = row.millionAmount < 1 ? `< ${one}` : millionAmount
+
 ---
 
 <div class="row">
@@ -30,25 +33,25 @@ const millionAmountToUSD = formatCurrency(row.millionAmountToUSD, currency);
         <Image
           src="/images/check.svg"
           alt="Check mark"
-          width="40"
+          width="32"
           height="32"
         />
         <span>{formattedAmount}</span>
       </div>
-      <div class="column column--difference amount--green">
-        You only needed <span>{millionAmountToUSD}</span> to make a million {row.code}
+      <div class="column column--result amount--green">
+        You only needed <span>{renderedMillionAmount}</span> to make a million {row.code}
       </div>
     ) : (
       <div class="column column--amount amount--red">
         <Image
           src="/images/cross.svg"
           alt="Cross mark"
-          width="40"
+          width="32"
           height="32"
         />
         <span>{formattedAmount}</span>
       </div>
-      <div class="column column--difference amount--red">
+      <div class="column column--result amount--red">
         You need <span>{difference}</span> more to make a million {row.code}
       </div>
     )
@@ -56,27 +59,20 @@ const millionAmountToUSD = formatCurrency(row.millionAmountToUSD, currency);
 </div>
 
 <style>
-  .column--name {
-    width: 30rem;
-  }
-
-  .column--amount {
-    width: 18rem;
-  }
-
-  .column--difference {
-    width: 36rem;
-  }
-
   .row {
     display: flex;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 0;
     border-bottom: 1px solid var(--color-primary-600);
+  }
+  
+  .row:nth-of-type(2) {
+    border-top: 1px solid var(--color-primary-600);
   }
 
   .column {
     font-size: 1.25rem;
-    padding: 0.75rem 0;
   }
 
   .column--amount {
@@ -87,6 +83,7 @@ const millionAmountToUSD = formatCurrency(row.millionAmountToUSD, currency);
 
   .column--amount img {
     object-fit: cover;
+    margin-left: -0.25rem;
   }
 
   .amount--green {
@@ -97,8 +94,36 @@ const millionAmountToUSD = formatCurrency(row.millionAmountToUSD, currency);
     color: var(--color-red)
   }
 
-  .column--difference span {
+  .column--result span {
     font-weight: 500;
     text-decoration: underline;
+  }
+
+  @media (min-width: 90rem) {
+    .row {
+      flex-direction: row;
+      gap: 2rem;
+      padding: 0;
+    }
+
+    .row:nth-of-type(2) {
+      border-top: 1px solid var(--color-primary-700);
+    }
+
+    .column {
+      padding: 0.75rem 0;
+    }
+
+    .column--name {
+      width: 30rem;
+    }
+
+    .column--result {
+      width: 36rem;
+    }
+
+    .column--amount {
+      width: 18rem;
+    }
   }
 </style>

@@ -56,7 +56,7 @@ export interface ResultRow {
   rate: number;
   amount: number;
   difference: number;
-  millionAmountToUSD: number;
+  millionAmount: number;
   isOverMillion: boolean;
 }
 
@@ -79,7 +79,7 @@ export const getResults = (
     const currency = currencies.data[key];
     const rate = exchangeRates[key].value;
     const amount = netWorth * rate;
-    const millionAmountToUSD = ONE_MILLION / rate;
+    const millionAmount = ONE_MILLION / rate;
     const isOverMillion = amount > ONE_MILLION;
 
     const result: ResultRow = {
@@ -89,7 +89,7 @@ export const getResults = (
       rate,
       amount,
       difference: (amount - ONE_MILLION) / rate,
-      millionAmountToUSD,
+      millionAmount,
       isOverMillion,
     };
 
