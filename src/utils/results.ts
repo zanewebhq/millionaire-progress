@@ -85,7 +85,7 @@ export const getResults = (
     const result: ResultRow = {
       name: currency.name,
       code: currency.code,
-      flag: currencyFlags[key],
+      flag: currencyFlags[key as keyof typeof currencyFlags] || '',
       rate,
       amount,
       difference: (amount - ONE_MILLION) / rate,
