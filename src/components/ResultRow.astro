@@ -1,0 +1,101 @@
+---
+import type { CurrencyOptionCode } from '@constants/currencies';
+import formatCurrency from '@utils/currency';
+import type { ResultRow } from '@utils/results';
+import Image from 'astro/components/Image.astro';
+
+interface Props {
+  row: ResultRow;
+  currency: CurrencyOptionCode
+}
+
+const { row, currency } = Astro.props;
+
+const formattedAmount = formatCurrency(row.amount, row.code);
+const difference = formatCurrency(Math.abs(row.difference), currency);
+const millionAmountToUSD = formatCurrency(row.millionAmountToUSD, currency);
+---
+
+<div class="row">
+  <div class="column column--name">
+    {row.flag}
+    {row.name} ({row.code})
+  </div>
+  {
+    row.isOverMillion ? (
+      <div class="column column--amount amount--green">
+        <Image
+          src="/images/check.svg"
+          alt="Check mark"
+          width="40"
+          height="32"
+        />
+        <span>{formattedAmount}</span>
+      </div>
+      <div class="column column--difference amount--green">
+        You only needed <span>{millionAmountToUSD}</span> to make a million {row.code}
+      </div>
+    ) : (
+      <div class="column column--amount amount--red">
+        <Image
+          src="/images/cross.svg"
+          alt="Cross mark"
+          width="40"
+          height="32"
+        />
+        <span>{formattedAmount}</span>
+      </div>
+      <div class="column column--difference amount--red">
+        You need <span>{difference}</span> more to make a million {row.code}
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .column--name {
+    width: 30rem;
+  }
+
+  .column--amount {
+    width: 18rem;
+  }
+
+  .column--difference {
+    width: 36rem;
+  }
+
+  .row {
+    display: flex;
+    gap: 2rem;
+    border-bottom: 1px solid var(--color-primary-600);
+  }
+
+  .column {
+    font-size: 1.25rem;
+    padding: 0.75rem 0;
+  }
+
+  .column--amount {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+  }
+
+  .column--amount img {
+    object-fit: cover;
+  }
+
+  .amount--green {
+    color: var(--color-green)
+  }
+
+  .amount--red {
+    color: var(--color-red)
+  }
+
+  .column--difference span {
+    font-weight: 500;
+    text-decoration: underline;
+  }
+</style>

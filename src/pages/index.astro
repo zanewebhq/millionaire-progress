@@ -3,11 +3,11 @@ import Layout from '@layouts/Layout.astro';
 import Button from '@components/Button.astro';
 import CurrencyField from '@components/CurrencyField.astro';
 import SelectField from '@components/SelectField.astro';
-import currencies from '@constants/currencies';
+import currencyOptions from '@constants/currencies';
 ---
 
 <script>
-  import currencies from '@constants/currencies';
+  import currencyOptions from '@constants/currencies';
 
   const currencyElement = document.getElementById(
     'currency',
@@ -17,7 +17,7 @@ import currencies from '@constants/currencies';
   ) as HTMLDivElement;
 
   const handleCurrencyChange = () => {
-    const currencySymbol = currencies.find(
+    const currencySymbol = currencyOptions.find(
       (currency) => currency.value === currencyElement.value,
     )?.symbol;
 
@@ -44,7 +44,7 @@ import currencies from '@constants/currencies';
             id="currency"
             name="currency"
             label="What is your currency?"
-            options={currencies}
+            options={currencyOptions}
             required
           />
 
@@ -54,6 +54,8 @@ import currencies from '@constants/currencies';
             type="number"
             label="What is your net worth?"
             placeholder="1000"
+            min="100"
+            max="1000000000"
             required
           />
         </div>

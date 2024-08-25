@@ -5,9 +5,10 @@ interface Props {
   label: string;
   options: { value: string; label: string }[];
   required?: boolean;
+  selected?: string;
 }
 
-const { label, id, options, ...rest } = Astro.props;
+const { label, id, options, selected, ...rest } = Astro.props;
 ---
 
 <div class="field">
@@ -15,7 +16,9 @@ const { label, id, options, ...rest } = Astro.props;
   <select class="field__select" id={id} {...rest}>
     {
       options.map((option) => (
-        <option value={option.value}>{option.label}</option>
+        <option value={option.value} selected={selected === option.value}>
+          {option.label}
+        </option>
       ))
     }
   </select>
@@ -27,6 +30,7 @@ const { label, id, options, ...rest } = Astro.props;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    width: 100%;
   }
 
   .field::after {

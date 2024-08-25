@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 
 <header class="header">
   <div class="header__content">
-    <div class="header__logo">
+    <a href="/" class="header__logo">
       <Image
         class="header__logo-image"
         src="/images/coin.svg"
@@ -13,7 +13,7 @@ import { Image } from 'astro:assets';
         height="48"
       />
       <div class="header__logo-text">Millionaire Progress</div>
-    </div>
+    </a>
   </div>
 </header>
 
@@ -37,6 +37,8 @@ import { Image } from 'astro:assets';
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    color: inherit;
+    text-decoration: none;
   }
 
   .header__logo-image {

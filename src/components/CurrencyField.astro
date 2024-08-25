@@ -6,6 +6,9 @@ interface Props {
   type: 'text' | 'number';
   placeholder?: string;
   required?: boolean;
+  value?: number;
+  min: string;
+  max: string;
 }
 
 const { label, id, ...rest } = Astro.props;
@@ -24,6 +27,7 @@ const { label, id, ...rest } = Astro.props;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    width: 100%;
   }
 
   .field__label {

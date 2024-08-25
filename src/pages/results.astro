@@ -1,9 +1,176 @@
 ---
+import Button from '@components/Button.astro';
+import CurrencyField from '@components/CurrencyField.astro';
+import SelectField from '@components/SelectField.astro';
+import currencyOptions from '@constants/currencies';
+import Layout from '@layouts/Layout.astro';
+import ResultRow from '@components/ResultRow.astro';
+import formatCurrency from '@utils/currency';
+import { getFormValues, getExchangeRates, getResults } from '@utils/results';
+
 export const prerender = false;
 
-const currency = Astro.url.searchParams.get('currency') || '';
-const netWorth = Astro.url.searchParams.get('net-worth') || '';
+const { netWorth, currency } = getFormValues(Astro);
+const formattedNetWorth = formatCurrency(netWorth, currency);
+const exchangeRates = getExchangeRates(currency);
+const { overMillionResults, underMillionResults } = getResults(
+  exchangeRates,
+  netWorth,
+);
+const numberOfCurrencies =
+  overMillionResults.length === 1
+    ? `${overMillionResults.length} currency`
+    : `${overMillionResults.length} currencies`;
 ---
 
-<div>{currency}</div>
-<div>{netWorth}</div>
+<Layout>
+  <main class="main">
+    <div class="main__content">
+      <form id="form" class="form" action="results">
+        <SelectField
+          id="currency"
+          name="currency"
+          label="What is your currency?"
+          options={currencyOptions}
+          selected={currency}
+          required
+        />
+
+        <CurrencyField
+          id="net-worth"
+          name="net-worth"
+          type="number"
+          label="What is your net worth?"
+          value={netWorth}
+          min="100"
+          max="1000000000"
+          required
+        />
+
+        <Button>Calculate</Button>
+      </form>
+
+      <div class="results">
+        {
+          overMillionResults.length === 0 && (
+            <p class="results__description">
+              Assuming a net worth of <strong>💸 {formattedNetWorth}</strong>,
+              you have unfortunately not made a million in any currency yet.
+            </p>
+          )
+        }
+
+        {
+          overMillionResults.length > 0 && (
+            <p class="results__description">
+              Assuming a net worth of <strong>💸 {formattedNetWorth}</strong>,
+              you have made a million in{' '}
+              <strong>🗺️ {numberOfCurrencies}</strong>:
+            </p>
+          )
+        }
+        <div class="results__group">
+          <div class="results__header">
+            <div class="results__column--name">Currency</div>
+            <div class="results__column--amount">Converted amount</div>
+            <div class="results__column--difference">Result</div>
+          </div>
+
+          {
+            overMillionResults.map((row) => (
+              <ResultRow row={row} currency={currency} />
+            ))
+          }
+
+          {
+            underMillionResults.map((row) => (
+              <ResultRow row={row} currency={currency} />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: calc(100vh - 12rem);
+  }
+
+  .main__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 90rem;
+    padding: 2.5rem 1rem 5rem;
+  }
+
+  .results__description {
+    width: 100%;
+    font-size: 1.25rem;
+    line-height: 130%;
+    margin-bottom: 2rem;
+  }
+
+  .form {
+    display: flex;
+    align-items: flex-end;
+    gap: 2rem;
+    width: 100%;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--color-primary-600);
+  }
+
+  .results {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .results__group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .results__header {
+    display: flex;
+    gap: 2rem;
+    border-bottom: 1px solid var(--color-primary-700);
+  }
+
+  .results__header > div {
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 0.75rem 0;
+  }
+
+  .results__column--name {
+    width: 30rem;
+  }
+  .results__column--amount {
+    width: 18rem;
+  }
+
+  .results__column--difference {
+    width: 36rem;
+  }
+
+  .results__row {
+    display: flex;
+    gap: 2rem;
+    border-bottom: 1px solid var(--color-primary-600);
+  }
+
+  .results__row > div {
+    font-size: 1.25rem;
+    padding: 0.75rem 0;
+  }
+</style>

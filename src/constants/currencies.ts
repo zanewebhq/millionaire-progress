@@ -1,4 +1,10 @@
-const currencies = [
+export enum CurrencyOptionCode {
+  USD = 'USD',
+  EUR = 'EUR',
+  GBP = 'GBP',
+}
+
+const currencyOptions = [
   {
     name: 'United States Dollar',
     value: 'USD',
@@ -22,4 +28,4 @@ const currencies = [
   },
 ];
 
-export default currencies;
+export default currencyOptions;
