@@ -17,7 +17,7 @@ const { label, id, ...rest } = Astro.props;
 <div class="field">
   <label class="field__label" for={id}>{label}</label>
   <div class="field__input-wrapper">
-    <div id={`${id}-prepend`} class="field__input-prepend">$</div>
+    <div id={`${id}Prepend`} class="field__input-prepend">$</div>
     <input class="field__input" id={id} {...rest} />
   </div>
 </div>

@@ -13,7 +13,7 @@ import currencyOptions from '@constants/currencies';
     'currency',
   ) as HTMLSelectElement;
   const currencySymbolElement = document.getElementById(
-    'net-worth-prepend',
+    'netWorthPrepend',
   ) as HTMLDivElement;
 
   const handleCurrencyChange = () => {
@@ -49,8 +49,8 @@ import currencyOptions from '@constants/currencies';
           />
 
           <CurrencyField
-            id="net-worth"
-            name="net-worth"
+            id="netWorth"
+            name="netWorth"
             type="number"
             label="What is your net worth?"
             placeholder="1000"

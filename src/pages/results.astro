@@ -5,12 +5,16 @@ import SelectField from '@components/SelectField.astro';
 import currencyOptions from '@constants/currencies';
 import Layout from '@layouts/Layout.astro';
 import ResultRow from '@components/ResultRow.astro';
-import formatCurrency from '@utils/currency';
-import { getFormValues, getExchangeRates, getResults } from '@utils/results';
+import {
+  getFormValues,
+  getExchangeRates,
+  getResults,
+  formatCurrency,
+} from '@utils';
 
 export const prerender = false;
 
-const { netWorth, currency } = getFormValues(Astro);
+const { netWorth, currency } = getFormValues(Astro.url);
 const formattedNetWorth = formatCurrency(netWorth, currency);
 const exchangeRates = getExchangeRates(currency);
 const { overMillionResults, underMillionResults } = getResults(
@@ -37,8 +41,8 @@ const numberOfCurrencies =
         />
 
         <CurrencyField
-          id="net-worth"
-          name="net-worth"
+          id="netWorth"
+          name="netWorth"
           type="number"
           label="What is your net worth?"
           value={netWorth}
