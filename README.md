@@ -1,6 +1,6 @@
 # Millionaire Progress
 
-Check whether you're made a million in currencies from around the world.
+Check whether you've made a million in currencies from around the world.
 
 ## Description
 
